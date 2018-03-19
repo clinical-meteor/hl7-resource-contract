@@ -1,14 +1,14 @@
 import { HTTP } from 'meteor/http';
 import { Meteor } from 'meteor/meteor';
 
-import { Patients } from '../lib/Patients';
+import { Contracts } from '../lib/Contracts';
 
-Patients.after.insert(function (userId, doc) {
-
-});
-Patients.after.update(function (userId, doc) {
+Contracts.after.insert(function (userId, doc) {
 
 });
-Patients.after.remove(function (userId, doc) {
+Contracts.after.update(function (userId, doc) {
+
+});
+Contracts.after.remove(function (userId, doc) {
 
 });

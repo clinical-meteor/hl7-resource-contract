@@ -10,6 +10,7 @@ import { Table } from 'react-bootstrap';
 import { Session } from 'meteor/session';
 import { has, get } from 'lodash';
 
+import FaFilePdfO from 'react-icons/lib/fa/file-pdf-o';
 
 export class ContractTable extends React.Component {
   getMeteorData() {
@@ -26,14 +27,6 @@ export class ContractTable extends React.Component {
         },
         cell: {
           paddingTop: '16px'
-        },
-        avatar: {
-          // color: rgb(255, 255, 255);
-          backgroundColor: 'rgb(188, 188, 188)',
-          userSelect: 'none',
-          borderRadius: '2px',
-          height: '40px',
-          width: '40px'
         }
       },
       selected: [],
@@ -43,8 +36,8 @@ export class ContractTable extends React.Component {
     let query = {};
     let options = {};
     // number of items in the table should be set globally
-    if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.paginationLimit) {
-      options.limit = Meteor.settings.public.defaults.paginationLimit;
+    if (get(Meteor, 'settings.public.defaults.paginationLimit')) {
+      options.limit = get(Meteor, 'settings.public.defaults.paginationLimit');
     }
     // but can be over-ridden by props being more explicit
     if(this.props.limit){
@@ -52,31 +45,17 @@ export class ContractTable extends React.Component {
     }
 
     // data.contracts = [];
-    data.contracts = Contracts.find(query, options).map(function(person){
+    data.contracts = Contracts.find(query, options).map(function(document){
       let result = {
-        _id: person._id,
-        active: person.active.toString(),
-        gender: person.gender,
-        name: '',
-        mrn: '',
-        // there's an off-by-1 error between momment() and Date() that we want
-        // to account for when converting back to a string
-        birthDate: '',
-        photo: "/thumbnail-blank.png",
-        initials: 'abc'
+        _id: document._id,
+        issued: moment(get(document, 'issued', null)).format("YYYY-MM-DD"),
+        subjectReference: get(document, 'subject.0.reference', '').split('/')[1].toUpperCase(),
+        type: get(document, 'type.coding.0.code', ''),
+        subType: get(document, 'subType.0.coding.0.code', ''),
+        display: get(document, 'subType.0.coding.0.display', ''),
+        signature: get(document, 'signer.0.party.display', ''),
       };
-      if (person.birthDate) {
-        result.birthDate = moment(person.birthDate).add(1, 'days').format("YYYY-MM-DD")
-      }
-      if (person.name && person.name[0] && person.name[0].text) {
-        result.name = person.name[0].text;
-      }
-      if (person.photo && person.photo[0] && person.photo[0].url) {
-        result.photo = person.photo[0].url;
-      }
-      if (person.identifier && person.identifier[0] && person.identifier[0].value) {
-        result.mrn = person.identifier[0].value;
-      }
+
       return result;
     });
 
@@ -92,7 +71,6 @@ export class ContractTable extends React.Component {
       data.style.cellHideOnPhone.display = 'table-cell';
     }
 
-    // console.log("ContractTable[data]", data);
     return data;
   }
   rowClick(id){
@@ -100,57 +78,22 @@ export class ContractTable extends React.Component {
     Session.set('selectedContract', id);
     Session.set('contractPageTabIndex', 2);
   }
-  renderRowAvatarHeader(){
-    if (Meteor.settings.public.defaults.avatars) {
-      return (
-        <th className='avatar'>photo</th>
-      );
-    }
-  }
-  renderRowAvatar(contract, avatarStyle){
-    if (Meteor.settings.public.defaults.avatars) {
-      return (
-        <td className='avatar'>
-          <img src={contract.photo} style={avatarStyle}/>
-        </td>
-      );
-    }
-  }
-  onSend(id){
-    let contract = Contracts.findOne({_id: id});
 
-    console.log("ContractTable.onSend()", contract);
-
-    var httpEndpoint = "http://localhost:8080";
-    if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.interfaces && Meteor.settings.public.interfaces.default && Meteor.settings.public.interfaces.default.channel && Meteor.settings.public.interfaces.default.channel.endpoint) {
-      httpEndpoint = Meteor.settings.public.interfaces.default.channel.endpoint;
-    }
-    HTTP.post(httpEndpoint + '/Contract', {
-      data: contract
-    }, function(error, result){
-      if (error) {
-        console.log("error", error);
-      }
-      if (result) {
-        console.log("result", result);
-      }
-    });
-  }
   render () {
     let tableRows = [];
     for (var i = 0; i < this.data.contracts.length; i++) {
       tableRows.push(
         <tr key={i} className="contractRow" style={{cursor: "pointer"}}>
 
-          { this.renderRowAvatar(this.data.contracts[i], this.data.style.avatar) }
-
-          <td className='name' onClick={ this.rowClick.bind('this', this.data.contracts[i]._id)} style={this.data.style.cell}>{this.data.contracts[i].name }</td>
-          <td className='gender' onClick={ this.rowClick.bind('this', this.data.contracts[i]._id)} style={this.data.style.cell}>{this.data.contracts[i].gender}</td>
-          <td className='birthDate' onClick={ this.rowClick.bind('this', this.data.contracts[i]._id)} style={{minWidth: '100px', paddingTop: '16px'}}>{this.data.contracts[i].birthDate }</td>
-          <td className='isActive' onClick={ this.rowClick.bind('this', this.data.contracts[i]._id)} style={this.data.style.cellHideOnPhone}>{this.data.contracts[i].active}</td>
-          <td className='id' onClick={ this.rowClick.bind('this', this.data.contracts[i]._id)} style={this.data.style.cellHideOnPhone}><span className="barcode">{this.data.contracts[i]._id}</span></td>
-          <td className='mrn' style={this.data.style.cellHideOnPhone}>{this.data.contracts[i].mrn}</td>
-          <td className='sendButton' style={this.data.style.hideOnPhone}><FlatButton label="send" onClick={this.onSend.bind('this', this.data.contracts[i]._id)}/></td>
+          <td className='issued' onClick={ this.rowClick.bind('this', this.data.contracts[i]._id)} style={{minWidth: '100px', paddingTop: '16px'}}>{this.data.contracts[i].issued }</td>
+          <td className='subjectReference' onClick={ this.rowClick.bind('this', this.data.contracts[i]._id)} style={this.data.style.cell}>{this.data.contracts[i].subjectReference }</td>
+          <td className='type' style={this.data.style.cellHideOnPhone}>{this.data.contracts[i].type}</td>
+          <td className='subtype' style={this.data.style.cellHideOnPhone}>{this.data.contracts[i].subType}</td>
+          <td className='display' style={this.data.style.cellHideOnPhone}>{this.data.contracts[i].display}</td>
+          <td className='signature' style={this.data.style.cellHideOnPhone}>{this.data.contracts[i].signature}</td>
+          <td className='file' style={this.data.style.cellHideOnPhone}>
+           <FaFilePdfO style={{fontSize: '120%'}} />
+          </td>
         </tr>
       );
     }
@@ -161,15 +104,14 @@ export class ContractTable extends React.Component {
         <thead>
           <tr>
 
-            { this.renderRowAvatarHeader() }
+            <th className='issued' style={{minWidth: '100px'}}>issued</th>
+            <th className='subjectReference'>subject</th>
+            <th className='type'>type</th>
+            <th className='subtype'>subtype</th>
+            <th className='display'>display</th>
+            <th className='signature'>signature</th>
+            <th className='file'>file</th>
 
-            <th className='name'>name</th>
-            <th className='gender'>gender</th>
-            <th className='birthdate' style={{minWidth: '100px'}}>birthdate</th>
-            <th className='isActive' style={this.data.style.hideOnPhone}>active</th>
-            <th className='id' style={this.data.style.hideOnPhone}>_id</th>
-            <th className='mrn' style={this.data.style.hideOnPhone}>mrn</th>
-            <th className='sendButton' style={this.data.style.hideOnPhone}></th>
           </tr>
         </thead>
         <tbody>

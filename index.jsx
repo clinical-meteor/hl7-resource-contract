@@ -1,6 +1,6 @@
 
-import ContractsPage from './client/react/ContractsPage';
-import ContractTable from './client/react/ContractTable';
+import ContractsPage from './client/ContractsPage';
+import ContractTable from './client/ContractTable';
 
 var DynamicRoutes = [{
   'name': 'ContractPage',

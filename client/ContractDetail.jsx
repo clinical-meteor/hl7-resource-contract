@@ -12,7 +12,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
 
-import { Contracts } from '../../lib/Contracts';
+import { Contracts } from '../lib/Contracts';
 import { Session } from 'meteor/session';
 
 
