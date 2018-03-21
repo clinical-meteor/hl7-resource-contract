@@ -2,30 +2,30 @@
 // http://localhost:9000/api/document/downloadPdfAsFhir/63
 
 {
-    "name": "Jane Doe",
-    "dob": "01/01/1975",
+    // "name": "Jane Doe",
+    // "dob": "01/01/1975",
     "url": "http://localhost:3000/latest/p/VVkMBhrNxg",
-    "createdOn": "03/19/2018 at 12:04:27 am",
-    "qrCode": "63",
-    "primaryCareAgent": {
-      "name": "Abigail Watson",
-      "relation": "",
-      "location": "Evansville  3939 Koressel Ave",
-      "email": "awatson1978@gmail.com",
-      "phone": "+13473029345"
-    },
-    "secondaryCareAgent": null,
-    "careCircle": [
-      {
-        "name": "Abigail Watson",
-        "contactInfo": "+13473029345\nawatson1978@gmail.com",
-        "reviewedOn": "03/19/2018",
-        "decisionMaker": "Primary Decision Maker"
-      }
-    ],
+    // "createdOn": "03/19/2018 at 12:04:27 am",
+    // "qrCode": "63",
+    //"primaryCareAgent": {
+      // "name": "Abigail Watson",
+      // "relation": "",
+      // "location": "Evansville  3939 Koressel Ave",
+      //"email": "awatson1978@gmail.com",
+      //"phone": "+13473029345"
+    //},
+    //"secondaryCareAgent": null,
+    // "careCircle": [
+    //   {
+    //     "name": "Abigail Watson",
+    //     "contactInfo": "+13473029345\nawatson1978@gmail.com",
+    //     "reviewedOn": "03/19/2018",
+    //     "decisionMaker": "Primary Decision Maker"
+    //   }
+    // ],
     "wishes": [
       {
-        "title": "My Quality of Life",
+        //"title": "My Quality of Life",
         "description": "Tell your loved ones and care providers what is most important to you.",
         "wishDetails": [
           {
@@ -34,62 +34,62 @@
               "This is a message about what's important."
             ]
           },
-          {
-            "wishSubtitle": "",
-            "wishItems": [
-              "Focus on prolonging my life (keeping me alive longer)",
-              "I am NOT aware of what's going on around me"
-            ]
-          },
-          {
-            "wishSubtitle": "",
-            "wishItems": [
-              "Focus on keeping me comfortable (free from pain)",
-              "I CANNOT communicate with other people"
-            ]
-          },
-          {
-            "wishSubtitle": "",
-            "wishItems": [
-              "Focus on prolonging my life (keeping me alive longer)",
-              "I CANNOT recognize my loved ones"
-            ]
-          },
-          {
-            "wishSubtitle": "",
-            "wishItems": [
-              "Focus on prolonging my life (keeping me alive longer)",
-              "I CANNOT breathe on my own without a machine"
-            ]
-          },
-          {
-            "wishSubtitle": "",
-            "wishItems": [
-              "Focus on keeping me comfortable (free from pain)",
-              "I CANNOT get out of bed and move around"
-            ]
-          },
-          {
-            "wishSubtitle": "",
-            "wishItems": [
-              "Focus on prolonging my life (keeping me alive longer)",
-              "I CANNOT feed myself"
-            ]
-          },
-          {
-            "wishSubtitle": "",
-            "wishItems": [
-              "Focus on keeping me comfortable (free from pain)",
-              "My pain CANNOT be controlled"
-            ]
-          },
-          {
-            "wishSubtitle": "",
-            "wishItems": [
-              "Focus on keeping me comfortable (free from pain)",
-              "I CANNOT live outside of a hospital or medical facility"
-            ]
-          }
+        //   {
+        //     "wishSubtitle": "",
+        //     "wishItems": [
+        //       "Focus on prolonging my life (keeping me alive longer)",
+        //       "I am NOT aware of what's going on around me"
+        //     ]
+        //   },
+        //   {
+        //     "wishSubtitle": "",
+        //     "wishItems": [
+        //       "Focus on keeping me comfortable (free from pain)",
+        //       "I CANNOT communicate with other people"
+        //     ]
+        //   },
+        //   {
+        //     "wishSubtitle": "",
+        //     "wishItems": [
+        //       "Focus on prolonging my life (keeping me alive longer)",
+        //       "I CANNOT recognize my loved ones"
+        //     ]
+        //   },
+        //   {
+        //     "wishSubtitle": "",
+        //     "wishItems": [
+        //       "Focus on prolonging my life (keeping me alive longer)",
+        //       "I CANNOT breathe on my own without a machine"
+        //     ]
+        //   },
+        //   {
+        //     "wishSubtitle": "",
+        //     "wishItems": [
+        //       "Focus on keeping me comfortable (free from pain)",
+        //       "I CANNOT get out of bed and move around"
+        //     ]
+        //   },
+        //   {
+        //     "wishSubtitle": "",
+        //     "wishItems": [
+        //       "Focus on prolonging my life (keeping me alive longer)",
+        //       "I CANNOT feed myself"
+        //     ]
+        //   },
+        //   {
+        //     "wishSubtitle": "",
+        //     "wishItems": [
+        //       "Focus on keeping me comfortable (free from pain)",
+        //       "My pain CANNOT be controlled"
+        //     ]
+        //   },
+        //   {
+        //     "wishSubtitle": "",
+        //     "wishItems": [
+        //       "Focus on keeping me comfortable (free from pain)",
+        //       "I CANNOT live outside of a hospital or medical facility"
+        //     ]
+        //   }
         ]
       },
       {

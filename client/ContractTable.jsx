@@ -34,14 +34,17 @@ export class ContractTable extends React.Component {
     };
 
     let query = {};
-    let options = {};
+    let options = {
+      sort: { issued: -1 }
+    };
+
     // number of items in the table should be set globally
     if (get(Meteor, 'settings.public.defaults.paginationLimit')) {
       options.limit = get(Meteor, 'settings.public.defaults.paginationLimit');
     }
     // but can be over-ridden by props being more explicit
     if(this.props.limit){
-      options.limit = this.props.limit;      
+      options.limit = this.props.limit;  
     }
 
     // data.contracts = [];
@@ -49,10 +52,12 @@ export class ContractTable extends React.Component {
       let result = {
         _id: document._id,
         issued: moment(get(document, 'issued', null)).format("YYYY-MM-DD"),
-        subjectReference: get(document, 'subject.0.reference', '').split('/')[1].toUpperCase(),
-        type: get(document, 'type.coding.0.code', ''),
-        subType: get(document, 'subType.0.coding.0.code', ''),
-        display: get(document, 'subType.0.coding.0.display', ''),
+        subjectReference: get(document, 'subject.0.display', '') ? get(document, 'subject.0.display', '') : get(document, 'subject.0.reference', '').split('/')[1].toUpperCase(),
+        type: get(document, 'type.text', ''),
+        agentCount: document.agent.length,
+        agentDisplay: get(document, 'agent.0.actor.display', ''),
+        // subType: get(document, 'subType.0.coding.0.code', ''),
+        // display: get(document, 'subType.0.coding.0.display', ''),
         signature: get(document, 'signer.0.party.display', ''),
       };
 
@@ -81,43 +86,58 @@ export class ContractTable extends React.Component {
 
   render () {
     let tableRows = [];
-    for (var i = 0; i < this.data.contracts.length; i++) {
-      tableRows.push(
-        <tr key={i} className="contractRow" style={{cursor: "pointer"}}>
+    let footer;
 
-          <td className='issued' onClick={ this.rowClick.bind('this', this.data.contracts[i]._id)} style={{minWidth: '100px', paddingTop: '16px'}}>{this.data.contracts[i].issued }</td>
-          <td className='subjectReference' onClick={ this.rowClick.bind('this', this.data.contracts[i]._id)} style={this.data.style.cell}>{this.data.contracts[i].subjectReference }</td>
-          <td className='type' style={this.data.style.cellHideOnPhone}>{this.data.contracts[i].type}</td>
-          <td className='subtype' style={this.data.style.cellHideOnPhone}>{this.data.contracts[i].subType}</td>
-          <td className='display' style={this.data.style.cellHideOnPhone}>{this.data.contracts[i].display}</td>
-          <td className='signature' style={this.data.style.cellHideOnPhone}>{this.data.contracts[i].signature}</td>
-          <td className='file' style={this.data.style.cellHideOnPhone}>
-           <FaFilePdfO style={{fontSize: '120%'}} />
-          </td>
-        </tr>
-      );
+    if(this.data.contracts.length === 0){
+      footer = <div style={{width: '100%', paddingTop: '120px', textAlign: 'center'}} >
+        <h3>No data.</h3>
+        <span>Are you sure you're logged in?</span>
+      </div>
+    } else {
+      for (var i = 0; i < this.data.contracts.length; i++) {
+        tableRows.push(
+          <tr key={i} className="contractRow" style={{cursor: "pointer"}}>
+
+            <td className='issued' onClick={ this.rowClick.bind('this', this.data.contracts[i]._id)} style={{minWidth: '100px', paddingTop: '16px'}}>{this.data.contracts[i].issued }</td>
+            <td className='subjectReference' onClick={ this.rowClick.bind('this', this.data.contracts[i]._id)} style={this.data.style.cell}>{this.data.contracts[i].subjectReference }</td>
+            <td className='type' style={this.data.style.cell}>{this.data.contracts[i].type}</td>
+            {/* <td className='subtype' style={this.data.style.cellHideOnPhone}>{this.data.contracts[i].subType}</td>
+            <td className='display' style={this.data.style.cellHideOnPhone}>{this.data.contracts[i].display}</td> */}
+            <td className='agentCount' style={this.data.style.cellHideOnPhone}>{this.data.contracts[i].agentCount}</td> 
+            <td className='agentDisplay' style={this.data.style.cellHideOnPhone}>{this.data.contracts[i].agentDisplay}</td> 
+            <td className='signature' style={this.data.style.cellHideOnPhone}>{this.data.contracts[i].signature}</td>
+            <td className='file' >
+            <FaFilePdfO style={this.data.style.cellHideOnPhone} style={{fontSize: '120%'}} />
+            </td>
+          </tr>
+        );
+      }
     }
 
-
     return(
-      <Table id='contractsTable' hover >
-        <thead>
-          <tr>
+      <div>
+        <Table id='contractsTable' hover >
+          <thead>
+            <tr>
 
-            <th className='issued' style={{minWidth: '100px'}}>issued</th>
-            <th className='subjectReference'>subject</th>
-            <th className='type'>type</th>
-            <th className='subtype'>subtype</th>
-            <th className='display'>display</th>
-            <th className='signature'>signature</th>
-            <th className='file'>file</th>
+              <th className='issued' style={{minWidth: '100px'}}>issued</th>
+              <th className='subjectReference' style={this.data.style.cellHideOnPhone}>subject</th>
+              <th className='type'>type</th>
+              {/* <th className='subtype'>subtype</th>
+              <th className='display'>display</th> */}
+              <th className='agentCount' style={this.data.style.cellHideOnPhone}># agents</th>
+              <th className='agentDisplay' style={this.data.style.cellHideOnPhone}>agent</th>
+              <th className='signature' style={this.data.style.cellHideOnPhone} >signature</th>
+              <th className='file' style={this.data.style.cellHideOnPhone} >file</th>
 
-          </tr>
-        </thead>
-        <tbody>
-          { tableRows }
-        </tbody>
-      </Table>
+            </tr>
+          </thead>
+          <tbody>
+            { tableRows }
+          </tbody>
+        </Table>
+        { footer }
+      </div>
     );
   }
 }

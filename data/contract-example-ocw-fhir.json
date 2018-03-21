@@ -1,0 +1,519 @@
+
+{
+    "resourceType": "Bundle",
+    "id": "ocw-pdf-1",
+    "meta": {
+      "lastUpdated": "2018-03-18T01:04:27Z"
+    },
+    "type": "document",
+    "identifier": {
+        "use" : "usual",
+        "type" : { 
+            "text": "qrCode"
+         }, 
+        "system" : "https://www.ourcarewishes.org/", 
+        "value" : "63"
+    },
+    "entry": [
+        {
+            "fullUrl": "fhir/Persons/1",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "1",
+                "text": {
+                "status": "generated",
+                    "div": "<div>Jane Doe</div>"
+                },
+                "active": true,
+                "name": [
+                {
+                    "use": "official",
+                    "family": "Doe",
+                    "given": [
+                        "Jane"
+                    ]
+                }],
+                "gender": "female",
+                "birthDate": "1975-01-01"
+            }
+        },
+        {
+            "fullUrl": "fhir/Persons/1",
+            "resource": {
+                "resourceType": "Person",
+                "text": {
+                    "status": "generated",
+                    "div": "<div>Alice Doe</div>"
+                },
+                "active": true,
+                "name": [
+                    {
+                    "use": "official",
+                    "family": "Doe",
+                    "given": [
+                        "Alice"
+                    ]
+                }],
+                "address": {
+                    "city": "Chicago",
+                    "street": "2770 Milwaukee Ave"
+                },
+                "contact": [{
+                    "resourceType" : "ContactPoint",
+                    "system" : "email", 
+                    "value" : "jdoe@test.org", 
+                    "use" : "home", 
+                    "rank" : "2"
+                }, {
+                    "resourceType" : "ContactPoint",
+                    "system" : "phone", 
+                    "value" : "134705553745", 
+                    "use" : "mobile", 
+                    "rank" : "2"
+                }]
+            }
+        },
+        {
+            "resourceType" : "CareTeam",
+            "status" : "active", 
+            "name" : "Personal Care Circle", 
+            "subject" : { 
+                "reference": "Patient/1",
+                "display": "Jane Doe"
+             }, 
+            "participant" : [{ 
+              "role" : { 
+                  "text": "Primary Care Agent"
+               }, 
+              "member" : { 
+                "reference": "Person/1",
+                "display": "Alice Doe"
+               }, 
+              "onBehalfOf" : { 
+                "reference": "Organization/1",
+                "display": "Our Care Wishes"
+               }
+            }]
+        },
+        {
+            "resourceType": "Contract",
+            "id": "C-2121",
+            "meta": {
+              "versionId": "1",
+              "lastUpdated": "2016-07-19T18:18:42.108-04:00"
+            },
+            "text": {
+              "status": "generated",
+              "div": "<div></div>"
+            },
+            "issued": "2031-11-01T21:18:27-04:00",
+            "subject": [
+              {
+                "reference": "Patient/1",
+                "display": "Jane Doe"
+              }
+            ],
+            "type": {
+              "coding": [
+                {
+                  "system": "https://www.ourcarewishes.org/fhir/directive-type",
+                  "code": "MyQualityOfLife"
+                }
+              ],
+              "text": "My Quality of Life"
+            },
+            "subType": [
+              {
+                "coding": [
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/consentcategorycodes",
+                    "code": "quality-of-life-awareness",
+                    "display": "I am NOT aware of what's going on around me"
+                  },
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/consentcategorycodes",
+                    "code": "quality-of-life-communication",
+                    "display": "I CANNOT communicate with other people"
+                  },
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/consentcategorycodes",
+                    "code": "quality-of-life-recognition",
+                    "display": "I CANNOT recognize my loved ones"
+                  },
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/consentcategorycodes",
+                    "code": "quality-of-life-breath",
+                    "display": "I CANNOT breathe on my own without a machine"
+                  },
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/consentcategorycodes",
+                    "code": "quality-of-life-momvement",
+                    "display": "I CANNOT get out of bed and move around"
+                  },
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/consentcategorycodes",
+                    "code": "quality-of-life-feed",
+                    "display": "I CANNOT feed myself"
+                  },
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/consentcategorycodes",
+                    "code": "quality-of-life-pain",
+                    "display": "My pain CANNOT be controlled"
+                  },
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/consentcategorycodes",
+                    "code": "quality-of-life-hospital",
+                    "display": "I CANNOT live outside of a hospital or medical facility"
+                  },
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/wishes-action-types",
+                    "code": "keep-alive",
+                    "display": "Focus on prolonging my life (keeping me alive longer)"
+                  },
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/wishes-action-types",
+                    "code": "free-from-pain",
+                    "display": "Focus on keeping me comfortable (free from pain)"
+                  }
+              ]
+              }
+            ],
+            "action": [
+                {
+                  "coding": [
+                    {
+                      "system": "https://www.ourcarewishes.org/fhir/wishes-actions",
+                      "code": "quality-of-life-awareness/keep-alive",
+                      "display": "Focus on prolonging my life (keeping me alive longer)"
+                    },
+                    {
+                        "system": "https://www.ourcarewishes.org/fhir/wishes-actions",
+                        "code": "quality-of-life-communication/free-from-pain",
+                        "display": "Focus on keeping me comfortable (free from pain)"
+                    },
+                    {
+                        "system": "https://www.ourcarewishes.org/fhir/wishes-actions",
+                        "code": "quality-of-life-recognition/keep-alive",
+                        "display": "Focus on prolonging my life (keeping me alive longer)"
+                    },
+                    {
+                        "system": "https://www.ourcarewishes.org/fhir/wishes-actions",
+                        "code": "quality-of-life-movement/free-from-pain",
+                        "display": "FFocus on keeping me comfortable (free from pain)"
+                    },
+                    {
+                        "system": "https://www.ourcarewishes.org/fhir/wishes-actions",
+                        "code": "quality-of-life-breath/keep-alive",
+                        "display": "Focus on prolonging my life (keeping me alive longer)"
+                    },
+                    {
+                        "system": "https://www.ourcarewishes.org/fhir/wishes-actions",
+                        "code": "quality-of-life-feed/free-from-pain",
+                        "display": "Focus on keeping me comfortable (free from pain)"
+                    },
+                    {
+                      "system": "https://www.ourcarewishes.org/fhir/wishes-actions",
+                      "code": "quality-of-life-pain/free-from-pain",
+                      "display": "Focus on keeping me comfortable (free from pain)"
+                    },
+                    {
+                        "system": "https://www.ourcarewishes.org/fhir/wishes-actions",
+                        "code": "quality-of-life-hospital/free-from-pain",
+                        "display": "Focus on keeping me comfortable (free from pain)"
+                      }
+                  ]
+                }
+            ],
+            "securityLabel": [
+              {
+                "system": "http://hl7.org/fhir/v3/ActReason",
+                "code": "TREAT",
+                "display": "treatment"
+              }
+            ],
+            "agent": [
+              {
+                "actor": {
+                  "reference": "Organization/1",
+                  "display": "UPenn Medical Center"
+                },
+                "role": [
+                  {
+                    "coding": [
+                      {
+                        "system": "http://org.mdhhs.fhir.consent-actor-type",
+                        "code": "IS",
+                        "display": "Recipient"
+                      }
+                    ],
+                    "text": "Recipient of restricted health information"
+                  }
+                ]
+              }
+            ],
+            "signer": [
+              {
+                "type": {
+                  "system": "http://org.mdhhs.fhir.consent-signer-type",
+                  "code": "SELF"
+                },
+                "party": {
+                  "reference": "Patient/1",
+                  "display": "Jane Doe"
+                },
+                "signature": [
+                  {
+                    "type": [
+                      {
+                        "system": "urn:iso-astm:E1762-95:2013",
+                        "code": "1.2.840.10065.1.12.1.1"
+                      }
+                    ],
+                    "when": "2017-02-08T10:57:34+01:00",
+                    "whoReference": {
+                      "reference": "Patient/1"
+                    }
+                  }
+                ]
+              }
+            ],
+            "legal": [
+              {
+                "contentAttachment": {
+                  "contentType": "application/pdf",
+                  "language": "en-US",
+                  "url": "http://org.mihin.ecms/ConsentDirective-2121",
+                  "title": "MDHHS-5515 Consent To Share Your Health Information"
+                }
+              }
+            ]
+        },
+        {
+            "resourceType": "Contract",
+            "id": "C-2121",
+            "meta": {
+              "versionId": "1",
+              "lastUpdated": "2016-07-19T18:18:42.108-04:00"
+            },
+            "text": {
+              "status": "generated",
+              "div": "<div></div>"
+            },
+            "issued": "2031-11-01T21:18:27-04:00",
+            "subject": [
+              {
+                "reference": "Patient/1",
+                "display": "Jane Doe"
+              }
+            ],
+            "type": {
+              "coding": [
+                {
+                  "system": "https://www.ourcarewishes.org/fhir/directive-type",
+                  "code": "MyMedicalTreatments"
+                }
+              ],
+              "text": "My Medical Treatments"
+            },
+            "subType": [
+              {
+                "coding": [
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/consentcategorycodes",
+                    "code": "scenario-cpr",
+                    "display": "LIFE-SUSTAINING TREATMENT IF MY HEART STOPS, INCLUDING CPR"
+                  },
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/consentcategorycodes",
+                    "code": "scenario-ventilator",
+                    "display": "BREATHING MACHINE"
+                  },
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/consentcategorycodes",
+                    "code": "scenario-dialysis",
+                    "display": "DIALYSIS"
+                  },
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/consentcategorycodes",
+                    "code": "scenario-surgery",
+                    "display": "SURGERY"
+                  },
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/consentcategorycodes",
+                    "code": "scenario-chemotherapy",
+                    "display": "CHEMOTHERAPY FOR CANCER"
+                  },
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/consentcategorycodes",
+                    "code": "scenario-radiation",
+                    "display": "RADIATION TREATMENT FOR CANCER"
+                  },
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/consentcategorycodes",
+                    "code": "scenario-antibiotics",
+                    "display": "ANTIBIOTICS TO TREAT INFECTIONS"
+                  },
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/consentcategorycodes",
+                    "code": "scenario-nutrition",
+                    "display": "ARTIFICIAL NUTRITION / HYDRATION"
+                  },
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/wishes-action-types",
+                    "code": "treatment-collaboration",
+                    "display": "I want my doctors and decision makers to work together to decide."
+                  },
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/wishes-action-types",
+                    "code": "treatment-trial",
+                    "display": "I want a short trial of this treatment. If my doctors and decision makers don't think it's helping me, I want it stopped."
+                  },
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/wishes-action-types",
+                    "code": "treatment-longevity",
+                    "display": "I want this treatment in an effort to keep me alive as long as possible, even if my condition doesn't improve or worsens."
+                  },
+                  {
+                    "system": "https://www.ourcarewishes.org/fhir/wishes-action-types",
+                    "code": "treatment-decline",
+                    "display": "I do NOT want this treatment."
+                  }             
+                ]
+              }
+            ],
+            "action": [
+                {
+                  "coding": [
+                    {
+                      "system": "https://www.ourcarewishes.org/fhir/wishes-actions",
+                      "code": "scenario-cpr/treatment-longevity",
+                      "display": "I want this treatment in an effort to keep me alive as long as possible, even if my condition doesn't improve or worsens."
+                    },
+                    {
+                        "system": "https://www.ourcarewishes.org/fhir/wishes-actions",
+                        "code": "scenario-ventilator/treatment-collaboration",
+                        "display": "I want my doctors and decision makers to work together to decide."
+                    },
+                    {
+                        "system": "https://www.ourcarewishes.org/fhir/wishes-actions",
+                        "code": "scenario-dialysis/treatment-decline",
+                        "display": "I do NOT want this treatment."
+                    },
+                    {
+                        "system": "https://www.ourcarewishes.org/fhir/wishes-actions",
+                        "code": "scenario-surgery/treatment-longevity",
+                        "display": "I want this treatment in an effort to keep me alive as long as possible, even if my condition doesn't improve or worsens."
+                    },
+                    {
+                        "system": "https://www.ourcarewishes.org/fhir/wishes-actions",
+                        "code": "scenario-chemotherapy/treatment-collaboration",
+                        "display": "I want my doctors and decision makers to work together to decide."
+                    },
+                    {
+                        "system": "https://www.ourcarewishes.org/fhir/wishes-actions",
+                        "code": "scenario-radiation/treatment-trial",
+                        "display": "I want a short trial of this treatment. If my doctors and decision makers don't think it's helping me, I want it stopped.",
+                    },
+                    {
+                      "system": "https://www.ourcarewishes.org/fhir/wishes-actions",
+                      "code": "scenario-antibiotics/treatment-collaboration",
+                      "display": "I want my doctors and decision makers to work together to decide."
+                    },
+                    {
+                        "system": "https://www.ourcarewishes.org/fhir/wishes-actions",
+                        "code": "scenario-nutrition/treatment-collaboration",
+                        "display": "I want my doctors and decision makers to work together to decide."
+                      }
+                  ]
+                }
+            ],
+            "securityLabel": [
+              {
+                "system": "http://hl7.org/fhir/v3/ActReason",
+                "code": "TREAT",
+                "display": "treatment"
+              }
+            ],
+            "agent": [
+              {
+                "actor": {
+                  "reference": "Organization/1",
+                  "display": "UPenn Medical Center"
+                },
+                "role": [
+                  {
+                    "coding": [
+                      {
+                        "system": "http://org.mdhhs.fhir.consent-actor-type",
+                        "code": "IS",
+                        "display": "Recipient"
+                      }
+                    ],
+                    "text": "Recipient of restricted health information"
+                  }
+                ]
+              }
+            ],
+            "signer": [
+              {
+                "type": {
+                  "system": "http://org.mdhhs.fhir.consent-signer-type",
+                  "code": "SELF"
+                },
+                "party": {
+                  "reference": "Patient/1",
+                  "display": "Jane Doe"
+                },
+                "signature": [
+                  {
+                    "type": [
+                      {
+                        "system": "urn:iso-astm:E1762-95:2013",
+                        "code": "1.2.840.10065.1.12.1.1"
+                      }
+                    ],
+                    "when": "2017-02-08T10:57:34+01:00",
+                    "whoReference": {
+                      "reference": "Patient/1"
+                    }
+                  }
+                ]
+              }
+            ],
+            "legal": [
+              {
+                "contentAttachment": {
+                  "contentType": "application/pdf",
+                  "language": "en-US",
+                  "url": "http://org.mihin.ecms/ConsentDirective-2121",
+                  "title": "MDHHS-5515 Consent To Share Your Health Information"
+                }
+              }
+            ]
+        }
+    ]
+  }
+
+
+
+
+
+
+
+
+// // CARETEAM - TO DISCUSS 
+//  "status" : "active", // proposed | active | suspended | inactive | entered-in-error
+//  "identifier" : [{ Identifier }], // External Ids for this team
+//  "category" : [{ CodeableConcept }], // Type of team
+//  "context" : { Reference(Encounter|EpisodeOfCare) }, // Encounter or episode associated with CareTeam
+//  "period" : { Period }, // Time period team covers
+//  "reasonCode" : [{ CodeableConcept }], // Why the care team exists
+//  "reasonReference" : [{ Reference(Condition) }], // Why the care team exists
+//  "managingOrganization" : [{ Reference(Organization) }], // Organization responsible for the care team
+//  "note" : [{ Annotation }] // Comments made about the CareTeam
+
+
+
+
+
+        

@@ -1,6 +1,6 @@
 Package.describe({
   name: 'clinical:hl7-resource-contract',
-  version: '3.3.0',
+  version: '3.3.2',
   summary: 'HL7 FHIR Resource - Contract',
   git: 'https://github.com/clinical-meteor/hl7-resource-contract',
   documentation: 'README.md'
@@ -27,6 +27,8 @@ Package.onUse(function (api) {
   api.use('clinical:hl7-resource-datatypes@3.0.1');
   api.use('clinical:hl7-resource-bundle@1.3.10');
   api.use('matb33:collection-hooks@0.7.15');
+
+  api.use('digilord:faker@1.0.7');
 
   api.imply('clinical:user-model');
 

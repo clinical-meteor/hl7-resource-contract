@@ -1,4 +1,176 @@
-Meteor.methods({
+
+
+var ActConsentCodes = [{
+    "system": "https://www.hl7.org/fhir/v3/ActConsentDirective/vs.html",
+    "code": "EMRGONLY",
+    "display": "emergency only"
+  }, {
+    "system": "https://www.hl7.org/fhir/v3/ActConsentDirective/vs.html",
+    "code": "GRANTORCHOICE",
+    "display": "grantor choice"
+  }, {
+    "system": "https://www.hl7.org/fhir/v3/ActConsentDirective/vs.html",
+    "code": "  IMPLIED",
+    "display": "implied consent"
+  }, {
+    "system": "https://www.hl7.org/fhir/v3/ActConsentDirective/vs.html",
+    "code": "  IMPLIEDD",
+    "display": "implied consent with opportunity to dissent"
+  }, {
+    "system": "https://www.hl7.org/fhir/v3/ActConsentDirective/vs.html",
+    "code": "  NOCONSENT",
+    "display": "no consent"
+  }, {
+    "system": "https://www.hl7.org/fhir/v3/ActConsentDirective/vs.html",
+    "code": "  NOPP",
+    "display": "notice of privacy practices"
+  }, {
+    "system": "https://www.hl7.org/fhir/v3/ActConsentDirective/vs.html",
+    "code": "  OPTIN",
+    "display": "opt-in"
+  }, {
+    "system": "https://www.hl7.org/fhir/v3/ActConsentDirective/vs.html",
+    "code": "  OPTINR",
+    "display": "opt-in with restrictions"
+  }, {
+    "system": "https://www.hl7.org/fhir/v3/ActConsentDirective/vs.html",
+    "code": "  OPTOUT",
+    "display": "opt-out"
+  }, {
+    "system": "https://www.hl7.org/fhir/v3/ActConsentDirective/vs.html",
+    "code": "  OPTOUTE",
+    "display": "opt-out with exceptions"
+  }]
+  
+
+  var consentCategories = [{
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "42-CFR-2",
+    display: "42 CFR Part 2 Form of written consent"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "ACD",
+    display: "advance directive"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "CRIC",
+    display: "common rule informed consent"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "DNR",
+    display: "do not resuscitate"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "EMRGONLY",
+    display: "emergency only"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "Illinois-Minor-Procedure",
+    display: "Illinois Consent by Minors to Medical Procedures"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "HCD",
+    display: "health care directive"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "HIPAA-Auth",
+    display: "HIPAA Authorization"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "HIPAA-NPP",
+    display: "HIPAA Notice of Privacy Practices"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "HIPAA-Restrictions",
+    display: "HIPAA Restrictions"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "HIPAA-Research",
+    display: "HIPAA Research Authorization"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "HIPAA-Self-Pay",
+    display: "HIPAA Self-Pay Restriction"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "MDHHS-5515",
+    display: "Michigan MDHHS-5515 Consent to Share Behavioral Health Information for Care Coordination Purposes"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "NYSSIPP",
+    display: "New York State Surgical and Invasive Procedure Protocol"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "NPP",
+    display: "notice of privacy practices"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "POLST",
+    display: "POLST"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "RESEARCH",
+    display: "research information access"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "RSDID",
+    display: "de-identified information access"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "RSREID",
+    display: "re-identifiable information access"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "SSA-827",
+    display: "Authorization to Disclose Information to the Social Security Administration"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "VA-10-0484",
+    display: "Revocation for Release of Individually-Identifiable Health Information"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "VA-10-0485",
+    display: "Request for and Authorization to Release Protected Health Information to eHealth Exchange"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "VA-10-5345",
+    display: "Request for and Authorization to Release Medical Records or Health Information"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "VA-10-5345a",
+    display: "Individuals' Request for a Copy of Their Own Health Information "
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "VA-10-5345a-MHV",
+    display: "Individualâ€™s Request for a Copy of their own health information from MyHealtheVet"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "VA-10-10116",
+    display: "Revocation of Authorization for Use and Release of Individually Identifiable Health Information for Veterans Health Administration Research"
+  }, {
+    system: "http://hl7.org/fhir/consentcategorycodes	",
+    code: "VA-21-4142",
+    display: "Authorization and Consent to Release Information to the Department of Veterans Affairs (VA)"
+  }]
+  
+  
+
+  var contractTypes = [{
+    privacy: "Privacy"
+  }, {
+    disclosure: "Disclosure"
+  }, {
+    healthinsurance: "Health Insurance"
+  }, {
+    supply: "Supply Contrac"
+  }, {
+    consent: "consent"
+  }]
+
+  
+  
+  
+  Meteor.methods({
     initializeContract(){
         var newContract = {
             "resourceType": "Contract",
@@ -158,6 +330,107 @@ Meteor.methods({
             ]
           };
 
-        Contracts.insert(newContract);
+
+          var patients = [];
+
+          var numberPatients = 50;
+          for (let index = 0; index < numberPatients; index++) {
+              patients.push({
+                display: faker.name.findName(),
+                reference: "Patient/" + Random._id
+            })              
+          }
+  
+          var organizations = [];
+          var seedOrgs = [{
+            reference: "Organization/" + Random._id,
+            display: "All Saint's Hospital"
+          }, {
+            reference: "Organization/" + Random._id,
+            display: "St. James Infirmiry"
+          }, {
+            reference: "Organization/" + Random._id,
+            display: "Rainbow's End Retirement Home"
+          }, {
+            reference: "Organization/" + Random._id,
+            display: "Blue Lagoon Geothermal Spa"
+          }, {
+            reference: "Organization/" + Random._id,
+            display: "Hokkaido Noboribetsu Onsen"
+          }]
+          
+          organizations.push(seedOrgs[0])
+          organizations.push(seedOrgs[0])
+          organizations.push(seedOrgs[0])
+          organizations.push(seedOrgs[1])
+          organizations.push(seedOrgs[1])
+          organizations.push(seedOrgs[1])
+          organizations.push(seedOrgs[2])
+          organizations.push(seedOrgs[3])
+          organizations.push(seedOrgs[4])
+
+
+          var numContracts = 50;
+          for (let index = 0; index < numContracts; index++) {  
+            newContract.issued = new Date(Random.date('2000-01-01'));
+
+            var newPatient = Random.choice(patients)
+            newContract.subject = [{
+              reference: newPatient.reference,
+              display: newPatient.display
+            }]
+
+            var newContractType = Random.choice(ActConsentCodes);
+
+            newContract.type.coding.push(newContractType);
+            newContract.type.text =  newContractType.display;
+
+            newContract.agent = [];
+            newContract.agent.push({
+                "actor": Random.choice(organizations),
+                "role": [
+                  {
+                    "coding": [
+                      {
+                        "system": "http://org.mdhhs.fhir.consent-actor-type",
+                        "code": "IR",
+                        "display": "Recipient"
+                      }
+                    ],
+                    "text": "Recipient of restricted health information"
+                  }
+                ]
+            });
+
+            newContract.subType = [
+                Random.choice(consentCategories)
+            ];
+  
+            newContract.signer = [{
+                "type": {
+                    "system": "http://org.mdhhs.fhir.consent-signer-type",
+                    "code": "SELF"
+                },
+                "party": {
+                    "reference": newPatient.reference,
+                    "display": newPatient.display
+                },
+                "signature": [{
+                    "type": [{
+                        "system": "urn:iso-astm:E1762-95:2013",
+                        "code": "1.2.840.10065.1.12.1.1"
+                    }],
+                    "when": new Date(moment()),
+                    "whoReference": {
+                        "reference": newPatient.reference,
+                        "display": newPatient.display
+                    }
+                }]
+            }];
+            
+            var contractId = Contracts.insert(newContract);
+            console.log('Initialized ' + contractId)          
+          }
+
     }
 })

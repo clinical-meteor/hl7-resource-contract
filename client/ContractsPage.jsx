@@ -1,6 +1,6 @@
 import { CardText, CardTitle } from 'material-ui/Card';
 import { Tab, Tabs } from 'material-ui/Tabs';
-import { GlassCard, Glass, VerticalCanvas } from 'meteor/clinical:glass-ui';
+import { GlassCard, Glass, VerticalCanvas, FullPageCanvas } from 'meteor/clinical:glass-ui';
 import ContractDetail from './ContractDetail';
 import ContractTable from './ContractTable';
 import React from 'react';
@@ -68,7 +68,7 @@ export class ContractsPage extends React.Component {
     console.log('React.version: ' + React.version);
     return (
       <div id="contractsPage">
-        <VerticalCanvas>
+        <FullPageCanvas>
           <GlassCard height="auto">
             <CardTitle
               title="Contracts"
@@ -89,7 +89,7 @@ export class ContractsPage extends React.Component {
 
             </CardText>
           </GlassCard>
-        </VerticalCanvas>
+        </FullPageCanvas>
       </div>
     );
   }
