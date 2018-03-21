@@ -171,7 +171,7 @@ var ActConsentCodes = [{
   
   
   Meteor.methods({
-    initializeContract(){
+    initializeContracts(){
         var newContract = {
             "resourceType": "Contract",
             "id": "C-2121",
