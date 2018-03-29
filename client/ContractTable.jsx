@@ -9,6 +9,7 @@ import { Table } from 'react-bootstrap';
 //import { Contracts } from '../../lib/Contracts';
 import { Session } from 'meteor/session';
 import { has, get } from 'lodash';
+import { TableNoData } from 'meteor/clinical:glass-ui'
 
 import FaFilePdfO from 'react-icons/lib/fa/file-pdf-o';
 
@@ -89,10 +90,7 @@ export class ContractTable extends React.Component {
     let footer;
 
     if(this.data.contracts.length === 0){
-      footer = <div style={{width: '100%', paddingTop: '120px', textAlign: 'center'}} >
-        <h3>No data.</h3>
-        <span>Are you sure you're logged in?</span>
-      </div>
+      footer = <TableNoData />
     } else {
       for (var i = 0; i < this.data.contracts.length; i++) {
         tableRows.push(
