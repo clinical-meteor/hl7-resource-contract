@@ -1,15 +1,24 @@
 
 import ContractsPage from './client/ContractsPage';
 import ContractTable from './client/ContractTable';
+import ContractDetail from './client/ContractDetail';
+import PowerOfAttorneyForm from './client/PowerOfAttorneyForm';
+import PowerOfAttorneyPreview from './client/PowerOfAttorneyPreview';
 
 var DynamicRoutes = [{
   'name': 'ContractPage',
   'path': '/contracts',
   'component': ContractsPage,
   'requireAuth': true
+}, {
+  'name': 'PowerOfAttorneyPage',
+  'path': '/power-of-attorney-form',
+  'component': PowerOfAttorneyForm
+}, {
+  'name': 'PowerOfAttorneyPreview',
+  'path': '/power-of-attorney',
+  'component': PowerOfAttorneyPreview
 }];
-
-// var DynamicRoutes = [];
 
 var SidebarElements = [{
   'primaryText': 'Contracts',
@@ -22,7 +31,10 @@ export {
   DynamicRoutes, 
 
   ContractsPage,
-  ContractTable
+  ContractTable,
+
+  PowerOfAttorneyPreview,
+  PowerOfAttorneyPage
 };
 
 

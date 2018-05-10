@@ -43,7 +43,7 @@ let defaultContract = {
 Session.setDefault('contractUpsert', false);
 Session.setDefault('selectedContract', false);
 
-export class ContractDetail extends React.Component {
+export class PowerOfAttorneyForm extends React.Component {
   getMeteorData() {
     let data = {
       customWidth: {
@@ -75,7 +75,7 @@ export class ContractDetail extends React.Component {
       }
     }
 
-    if(process.env.NODE_ENV === "test") console.log("ContractDetail[data]", data);
+    if(process.env.NODE_ENV === "test") console.log("PowerOfAttorneyForm[data]", data);
     return data;
   }
 
@@ -265,5 +265,5 @@ export class ContractDetail extends React.Component {
 }
 
 
-ReactMixin(ContractDetail.prototype, ReactMeteorData);
-export default ContractDetail;
+ReactMixin(PowerOfAttorneyForm.prototype, ReactMeteorData);
+export default PowerOfAttorneyForm;
