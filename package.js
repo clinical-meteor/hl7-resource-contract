@@ -1,6 +1,6 @@
 Package.describe({
   name: 'clinical:hl7-resource-contract',
-  version: '3.3.5',
+  version: '3.3.6',
   summary: 'HL7 FHIR Resource - Contract',
   git: 'https://github.com/clinical-meteor/hl7-resource-contract',
   documentation: 'README.md'
