@@ -1,10 +1,16 @@
 ##  clinical:hl7-resource-contract   
 
-HL7 FHIR Resource - Contract
+#### Licensing  
+
+![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 
---------------------------------------------  
-#### Schema Version 
+#### Integration & Verification Tests  
+
+[![CircleCI](https://circleci.com/gh/clinical-meteor/hl7-resource-contract/tree/master.svg?style=svg)](https://circleci.com/gh/clinical-meteor/hl7-resource-contract/tree/master)
+
+
+#### API Reference  
 
 The resource in this package implements the `FHIR 1.6.0 - STU3 Ballot` version of the Contract resource schema, specified at  [http://hl7.org/fhir/2016Sep/contract.html](http://hl7.org/fhir/2016Sep/contract.html).  
 
@@ -95,7 +101,6 @@ This package conforms to version `FHIR 1.6.0 - STU3 Ballot`, as per the Touchsto
 ![https://raw.githubusercontent.com/clinical-meteor/hl7-resource-contract/master/screenshots/Screen%20Shot%202017-03-18%20at%2010.56.09%20PM.png](https://raw.githubusercontent.com/clinical-meteor/hl7-resource-contract/master/screenshots/Screen%20Shot%202017-03-18%20at%2010.56.09%20PM.png)  
 
 
---------------------------------------------  
-#### Licensing   
+#### Acknowledgements     
 
-![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
+Many thanks to UPenn Medical and the FhirBlocks Project for their generous support in sponsoring this package.   
