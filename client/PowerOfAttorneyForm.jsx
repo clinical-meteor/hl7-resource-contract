@@ -11,6 +11,7 @@ import ReactMixin from 'react-mixin';
 import { Contracts } from '../lib/Contracts';
 import { Session } from 'meteor/session';
 
+import { GlassCard, VerticalCanvas } from 'meteor/clinical:glass-ui'
 
 let defaultContract = {
   "resourceType" : "Contract",
@@ -81,7 +82,9 @@ export class PowerOfAttorneyForm extends React.Component {
 
   render() {
     return (
-      <div id={this.props.id} className="contractDetail">
+      <VerticalCanvas>
+        <GlassCard>
+        <div id={this.props.id} className="contractDetail">
         <CardText>
           <SelectField
             floatingLabelText="Type"
@@ -125,6 +128,8 @@ export class PowerOfAttorneyForm extends React.Component {
           { this.determineButtons(this.data.contractId) }
         </CardActions>
       </div>
+        </GlassCard>
+      </VerticalCanvas>
     );
   }
   determineButtons(contractId){
