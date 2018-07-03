@@ -3,7 +3,7 @@ import { insertContract, removeContractById, updateContract } from 'meteor/clini
 
 import { get, has, set } from 'lodash';
 
-import { Bert } from 'meteor/themeteorchef:bert';
+import { Bert } from 'meteor/clinical:alert';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
