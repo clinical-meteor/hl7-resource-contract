@@ -12,7 +12,7 @@
 
 #### API Reference  
 
-The resource in this package implements the `FHIR 1.6.0 - STU3 Ballot` version of the Contract resource schema, specified at  [http://hl7.org/fhir/2016Sep/contract.html](http://hl7.org/fhir/2016Sep/contract.html).  
+The resource in this package implements the `FHIR 1.6.0 - STU3 Ballot` version of the Contract resource schema, specified at  [https://www.hl7.org/fhir/DSTU2/contract.html](https://www.hl7.org/fhir/DSTU2/contract.html).  
 
 
 --------------------------------------------  
